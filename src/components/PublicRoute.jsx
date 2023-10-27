@@ -1,16 +1,11 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { Navigate, Outlet } from 'react-router-dom';
-import { authSelectors } from 'redux/auth';
+import { useAuth } from './hooks';
+import { Navigate } from 'react-router-dom';
 
-function PublicRoute({ redirectTo = '/', restricted = false }) {
-  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+const PublicRoute = ({ component: Component, redirectTo = '/' }) => {
+  const { isLoggedIn } = useAuth();
 
-  if (isLoggedIn && restricted) {
-    return <Navigate to={redirectTo} />;
-  }
-
-  return <Outlet />;
-}
+  return isLoggedIn ? <Navigate to={redirectTo} /> : <Component />;
+};
 
 export default PublicRoute;

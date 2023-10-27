@@ -1,20 +1,21 @@
 import React, { useEffect, lazy } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
-import AppBar from './components/AppBar';
 import Container from './components/Container';
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
-import { authOperations, authSelectors } from './redux/auth';
+import { authOperations } from './redux/auth';
+import { useAuth } from 'components/hooks';
+import { Layout } from 'components/Layout';
 
 const HomeView = lazy(() => import('./views/HomeView'));
-const RegisterView = lazy(() => import('./views/RegisterView'));
-const LoginView = lazy(() => import('./views/LoginView'));
+const RegisterView = lazy(() => import('./views/Register'));
+const LoginView = lazy(() => import('./views/Login'));
 const ContactsView = lazy(() => import('./views/ContactsView'));
 
 const App = () => {
   const dispatch = useDispatch();
-  const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
+  const { isRefreshing } = useAuth();
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
@@ -22,46 +23,38 @@ const App = () => {
 
   return (
     <Container>
-      {isFetchingCurrentUser ? (
-        <h1>Показываем React Skeleton</h1>
+      {isRefreshing ? (
+        <h1>Refreshing user...</h1>
       ) : (
-        <>
-          <AppBar />
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <PublicRoute>
-                  <HomeView />
-                </PublicRoute>
-              }
-            />
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<HomeView />} />
             <Route
               path="/register"
               element={
-                <PublicRoute restricted>
-                  <RegisterView />
-                </PublicRoute>
+                <PublicRoute
+                  redirectTo="/contacts"
+                  component={<RegisterView />}
+                />
               }
             />
             <Route
               path="/login"
               element={
-                <PublicRoute restricted redirectTo="/contacts">
-                  <LoginView />
-                </PublicRoute>
+                <PublicRoute redirectTo="/contacts" component={<LoginView />} />
               }
             />
             <Route
               path="/contacts"
               element={
-                <PrivateRoute redirectTo="/login">
-                  <ContactsView />
-                </PrivateRoute>
+                <PrivateRoute
+                  redirectTo="/login"
+                  component={<ContactsView />}
+                />
               }
             />
-          </Routes>
-        </>
+          </Route>
+        </Routes>
       )}
     </Container>
   );
