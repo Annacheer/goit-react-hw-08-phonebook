@@ -3,7 +3,6 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import filterReducer from './phonebook/filterSlice';
 import { contactsReducer } from './phonebook/contactSlice';
 import { authReducer } from './auth';
-
 import {
   persistStore,
   persistReducer,
