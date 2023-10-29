@@ -12,7 +12,9 @@ export default function ContactsView() {
   const dispatch = useDispatch();
   const isLoadingContacts = useSelector(selectLoading);
 
-  useEffect(() => dispatch(fetchContacts()), [dispatch]);
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   return (
     <>

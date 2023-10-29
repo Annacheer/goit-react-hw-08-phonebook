@@ -26,9 +26,6 @@ export const addContact = createAsyncThunk(
         'https://connections-api.herokuapp.com/contacts',
         contact
       );
-      if (!response.data || response.status !== 200) {
-        throw new Error('Failed to add contact');
-      }
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

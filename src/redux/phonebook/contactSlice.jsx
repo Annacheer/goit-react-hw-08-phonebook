@@ -25,11 +25,7 @@ export const contactsReducer = createSlice({
         state.isLoading = false;
       })
       .addCase(addContact.fulfilled, (state, action) => {
-        if (Array.isArray(state.items)) {
           state.items.push(action.payload);
-        } else {
-          state.items = [action.payload];
-        }
       })
       .addCase(deleteContact.fulfilled, (state, action) => {
         state.items = state.items.filter(
