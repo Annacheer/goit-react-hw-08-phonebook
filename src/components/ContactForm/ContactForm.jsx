@@ -1,10 +1,10 @@
+import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/phonebook/operations';
 import { Form, Label } from './ContactForm.styled';
-import { InputStyle } from 'components/Filter/Filter.styled';
 import { selectAllContacts } from 'redux/phonebook/selectors';
 
 const ContactForm = () => {
@@ -40,6 +40,17 @@ const ContactForm = () => {
     }));
   };
   const theme = createTheme({
+    components: {
+      MuiTextField: {
+        styleOverrides: {
+          root: {
+            background: '#F5F5F5',
+            borderRadius: '4px',
+          },
+        },
+      },
+    },
+
     palette: {
       primary: {
         main: '#1976d2',
@@ -53,7 +64,13 @@ const ContactForm = () => {
       <Form onSubmit={handleSubmit}>
         <Label>
           Name
-          <InputStyle
+          <TextField
+            variant="outlined"
+            sx={{
+              '& .MuiInputBase-input': {
+                padding: '8px',
+              },
+            }}
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -65,7 +82,12 @@ const ContactForm = () => {
         </Label>
         <Label>
           Number
-          <InputStyle
+          <TextField
+            sx={{
+              '& .MuiInputBase-input': {
+                padding: '8px',
+              },
+            }}
             type="tel"
             name="number"
             pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"

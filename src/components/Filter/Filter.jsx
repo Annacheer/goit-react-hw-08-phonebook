@@ -1,5 +1,7 @@
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import TextField from '@mui/material/TextField';
 import React, { useState } from 'react';
-import { InputStyle, Label } from './Filter.styled';
+import { Label } from './Filter.styled';
 import { useDispatch } from 'react-redux';
 import { setFilter } from 'redux/phonebook/filterSlice';
 
@@ -20,15 +22,43 @@ const Filter = () => {
     dispatch(setFilter(value));
   };
 
+  const theme = createTheme({
+    components: {
+      MuiTextField: {
+        styleOverrides: {
+          root: {
+            background: '#F5F5F5',
+            borderRadius: '4px',
+            width: '300px',
+          },
+        },
+      },
+    },
+
+    palette: {
+      primary: {
+        main: '#1976d2',
+        contrastText: '#fff',
+      },
+    },
+  });
   return (
-    <Label>
-      Find contacts by name
-      <InputStyle
-        type="text"
-        value={localFilter}
-        onChange={handleInputChange}
-      />
-    </Label>
+    <ThemeProvider theme={theme}>
+      <Label>
+        Find contacts by name
+        <TextField
+          variant="outlined"
+          sx={{
+            '& .MuiInputBase-input': {
+              padding: '8px',
+            },
+          }}
+          type="text"
+          value={localFilter}
+          onChange={handleInputChange}
+        />
+      </Label>
+    </ThemeProvider>
   );
 };
 
