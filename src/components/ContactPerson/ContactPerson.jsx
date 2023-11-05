@@ -16,7 +16,7 @@ const ContactPerson = ({ contact, onDelete }) => (
   <ThemeProvider theme={theme}>
     <Item>
       {contact.name}: {contact.number}
-      <Button type="button" onClick={onDelete}>
+      <Button sx={{ ml: '8px' }} type="button" onClick={onDelete}>
         Delete
       </Button>
     </Item>
