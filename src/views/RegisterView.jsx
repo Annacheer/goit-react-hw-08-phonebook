@@ -1,4 +1,5 @@
 import React from 'react';
+import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { useDispatch } from 'react-redux';
@@ -21,6 +22,16 @@ export default function RegisterView() {
     form.reset();
   };
   const theme = createTheme({
+    components: {
+      MuiTextField: {
+        styleOverrides: {
+          root: {
+            background: '#F5F5F5',
+            borderRadius: '4px',
+          },
+        },
+      },
+    },
     palette: {
       primary: {
         main: '#1976d2',
@@ -37,15 +48,42 @@ export default function RegisterView() {
         <form className={css.form} onSubmit={handleSubmit} autoComplete="off">
           <label className={css.label}>
             Username
-            <input type="text" name="name" />
+            <TextField
+              variant="outlined"
+              sx={{
+                '& .MuiInputBase-input': {
+                  padding: '8px',
+                },
+              }}
+              type="text"
+              name="name"
+            />
           </label>
           <label className={css.label}>
             Email
-            <input type="email" name="email" />
+            <TextField
+              variant="outlined"
+              sx={{
+                '& .MuiInputBase-input': {
+                  padding: '8px',
+                },
+              }}
+              type="email"
+              name="email"
+            />
           </label>
           <label className={css.label}>
             Password
-            <input type="password" name="password" />
+            <TextField
+              variant="outlined"
+              sx={{
+                '& .MuiInputBase-input': {
+                  padding: '8px',
+                },
+              }}
+              type="password"
+              name="password"
+            />
           </label>
           <Button variant="contained" color="primary" type="submit">
             Register
