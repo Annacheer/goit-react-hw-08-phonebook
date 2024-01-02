@@ -1,4 +1,4 @@
-.link {
+/* .link {
   display: inline-block;
   text-decoration: none;
   padding: 12px;
@@ -8,4 +8,21 @@
 
 .link.active {
   color: #e84a5f;
+} */
+
+/* Update link styles */
+.link {
+  display: inline-block;
+  text-decoration: none;
+  padding: 12px 15px; /* Adjust padding for better touch area */
+  font-weight: 700;
+  color: #2a363b; /* Maintain the color */
+  transition: color 0.3s, background-color 0.3s; /* Smooth transition for hover */
+}
+
+.link:hover,
+.link.active {
+  color: #e84a5f; /* Highlight color for active or hover state */
+  background-color: #eef2f3; /* Subtle background color on hover */
+  border-radius: 4px; /* Rounded corners for the hovered link */
 }

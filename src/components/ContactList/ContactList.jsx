@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact, fetchContacts } from 'redux/phonebook/operations';
 import ContactPerson from 'components/ContactPerson/ContactPerson';
 import { selectAllContacts } from 'redux/phonebook/selectors';
+import { StyledContactList } from './ContactList.styled';
 
 const ContactList = props => {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const ContactList = props => {
   );
 
   return (
-    <ul>
+    <StyledContactList>
       {filteredContacts.map(contact => (
         <ContactPerson
           key={contact.id}
@@ -26,7 +27,7 @@ const ContactList = props => {
           onDelete={() => dispatch(deleteContact(contact.id))}
         />
       ))}
-    </ul>
+    </StyledContactList>
   );
 };
 

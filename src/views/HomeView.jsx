@@ -1,4 +1,5 @@
 import React from 'react';
+import css from './HomeView.module.css';
 
 const styles = {
   container: {
@@ -17,7 +18,7 @@ const styles = {
 export default function HomeView() {
   return (
     <div style={styles.container}>
-      <h1 style={styles.title}>
+      <h1 className={css.welcometext}>
         Task manager welcome page{' '}
         <span role="img" aria-label="Greeting icon">
           💁‍♀️

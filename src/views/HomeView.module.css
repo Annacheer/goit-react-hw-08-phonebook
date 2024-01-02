@@ -1,0 +1,13 @@
+.welcometext {
+  position: absolute; /* or relative, depending on your layout */
+  top: 50%; /* center vertically */
+  left: 50%; /* center horizontally */
+  transform: translate(-50%, -50%); /* adjust the exact position */
+  font-size: 2em; /* size of the text */
+  font-weight: bold; /* make the text bold */
+  color: #333333; /* color of the text */
+  text-align: center; /* ensure text is centered */
+  max-width: 80%; /* max width of the text block */
+  line-height: 1.2; /* line spacing */
+  font-family: 'Arial', sans-serif; /* font of the text */
+}

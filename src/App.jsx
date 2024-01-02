@@ -7,6 +7,8 @@ import PublicRoute from './components/PublicRoute';
 import { authOperations } from './redux/auth';
 import { useAuth } from 'components/hooks';
 import { Layout } from 'components/Layout';
+import { ThemeProvider } from '@mui/material/styles';
+import theme from './theme'; // Ensure the path is correct
 
 const HomeView = lazy(() => import('./views/HomeView'));
 const RegisterView = lazy(() => import('./views/Register'));
@@ -22,41 +24,46 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <Container>
-      {isRefreshing ? (
-        <h1>Refreshing user...</h1>
-      ) : (
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<HomeView />} />
-            <Route
-              path="/register"
-              element={
-                <PublicRoute
-                  redirectTo="/contacts"
-                  component={<RegisterView />}
-                />
-              }
-            />
-            <Route
-              path="/login"
-              element={
-                <PublicRoute redirectTo="/contacts" component={<LoginView />} />
-              }
-            />
-            <Route
-              path="/contacts"
-              element={
-                <PrivateRoute
-                  redirectTo="/login"
-                  component={<ContactsView />}
-                />
-              }
-            />
-          </Route>
-        </Routes>
-      )}
-    </Container>
+    <ThemeProvider theme={theme}>
+      <Container>
+        {isRefreshing ? (
+          <h1>Refreshing user...</h1>
+        ) : (
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<HomeView />} />
+              <Route
+                path="/register"
+                element={
+                  <PublicRoute
+                    redirectTo="/contacts"
+                    component={<RegisterView />}
+                  />
+                }
+              />
+              <Route
+                path="/login"
+                element={
+                  <PublicRoute
+                    redirectTo="/contacts"
+                    component={<LoginView />}
+                  />
+                }
+              />
+              <Route
+                path="/contacts"
+                element={
+                  <PrivateRoute
+                    redirectTo="/login"
+                    component={<ContactsView />}
+                  />
+                }
+              />
+            </Route>
+          </Routes>
+        )}
+      </Container>
+    </ThemeProvider>
   );
 };
 

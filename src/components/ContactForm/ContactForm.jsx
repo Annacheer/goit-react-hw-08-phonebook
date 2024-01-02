@@ -1,6 +1,7 @@
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
+import theme from '../../theme';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/phonebook/operations';
@@ -39,25 +40,6 @@ const ContactForm = () => {
       [name]: value,
     }));
   };
-  const theme = createTheme({
-    components: {
-      MuiTextField: {
-        styleOverrides: {
-          root: {
-            background: '#F5F5F5',
-            borderRadius: '4px',
-          },
-        },
-      },
-    },
-
-    palette: {
-      primary: {
-        main: '#1976d2',
-        contrastText: '#fff',
-      },
-    },
-  });
 
   return (
     <ThemeProvider theme={theme}>

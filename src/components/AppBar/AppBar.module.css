@@ -1,6 +1,18 @@
-.header {
+/* .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #2a363b;
+} */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid gray;
+  padding: 10px 20px; /* Add padding for better spacing */
+  background-color: #f8f0e3; /* Light background for the header */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  border-radius: 5px; /* Soften the edges */
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Modern font */
 }

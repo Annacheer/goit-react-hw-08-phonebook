@@ -29,12 +29,27 @@ const Filter = () => {
           root: {
             background: '#F5F5F5',
             borderRadius: '4px',
-            width: '300px',
+            width: '100%', // Full width of parent
+            margin: '0 auto', // Centering if needed
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)', // Optional shadow for depth
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: '#1976d2', // Custom border color
+              },
+              '&:hover fieldset': {
+                borderColor: 'lightblue', // Color when hovered
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: '#1976d2', // Color when focused
+              },
+            },
+            '@media (max-width: 768px)': {
+              width: '100%', // Full width on smaller screens
+            },
           },
         },
       },
     },
-
     palette: {
       primary: {
         main: '#1976d2',
@@ -42,6 +57,7 @@ const Filter = () => {
       },
     },
   });
+
   return (
     <ThemeProvider theme={theme}>
       <Label>
