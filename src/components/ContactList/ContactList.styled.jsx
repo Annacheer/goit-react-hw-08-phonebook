@@ -5,7 +5,7 @@ export const StyledContactList = styled.ul`
   padding: 10px;
   border: 1px solid #ced4da;
   border-radius: 8px;
-  background-color: #f8f9fa;
+  background-color: #f8f0e3;
 
   &:hover {
     background-color: #e9ecef;
